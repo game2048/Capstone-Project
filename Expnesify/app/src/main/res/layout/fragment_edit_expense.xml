@@ -21,21 +21,27 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"
                 android:id="@+id/cancel"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:contentDescription="@string/cancelDcr"
+                />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
                 android:id="@+id/delete"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:contentDescription="@string/deleteDcr"
+                />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
                 android:id="@+id/save"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:contentDescription="@string/saveDcr"
+                />
             <!--<TextView android:layout_weight="1" android:layout_height="match_parent"-->
             <!--android:text="@string/cancel" />-->
 
@@ -57,7 +63,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/amountText" />
+            android:id="@+id/amountText"
+            android:contentDescription="@string/amountDcr"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,28 +83,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/foodDrinks"
-                android:id="@+id/food" />
+                android:id="@+id/food"
+                android:contentDescription="@string/foodDcr"
+                />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/health"
-                android:id="@+id/health" />
+                android:id="@+id/health"
+                android:contentDescription="@string/healthDcr"
+                />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/leisure"
-                android:id="@+id/leisure" />
+                android:id="@+id/leisure"
+                android:contentDescription="@string/leisureDcr"
+                />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/transportation"
-                android:id="@+id/transportation" />
+                android:id="@+id/transportation"
+                android:contentDescription="@string/transDcr"
+                />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/others"
-                android:id="@+id/others" />
+                android:id="@+id/others"
+                android:contentDescription="@string/otherDcr"
+                />
 
         </RadioGroup>
 
@@ -125,7 +143,9 @@
             android:id="@+id/etxt_fromdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/from_date" />
+            android:hint="@string/from_date"
+            android:contentDescription="@string/dateDcr"
+            />
 
 
         <TextView
@@ -135,6 +155,12 @@
             android:text="@string/noteText"
             android:id="@+id/noteText" />
 
+        <EditText
+            android:id="@+id/note1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/noteDcr"
+            />
 
 
     </LinearLayout>

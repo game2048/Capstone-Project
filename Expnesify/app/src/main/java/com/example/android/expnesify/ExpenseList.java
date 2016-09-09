@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.expnesify.data.ExpenseContract;
@@ -47,6 +48,7 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     ArrayListAdaptor adapter = null;
     public static final int EXPENSE_LOADER = 0;
     SharedPreferences prefs ;
+    String sumExpense = "0";
     public static final String MyPREFERENCES = "MyPrefs" ;
     private static final String[] FORECAST_COLUMNS = {
             // In this case the id needs to be fully qualified with a table name, since
@@ -67,13 +69,7 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
         super.onCreate(savedInstanceState);
         // Add this line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        prefs.getString(getString(R.string.pref_metric_key),
-                getString(R.string.pref_default));
-        SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putString(getString(R.string.pref_metric_key), "1232");
-        editor.commit();
 
 //        return new R.layout.list_item_forecast;
 
@@ -83,20 +79,21 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_expense_list, container, false);
+//        View emptyView = inflater.inflate(R.layout.empty_list, container, false);
 
 
-        final Button saveBtn = (Button) rootView.findViewById(
-                R.id.newExpense);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "button", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), NewExpense.class);
-                    startActivity(intent);
-
-            }
-        });
+//        final Button saveBtn = (Button) rootView.findViewById(
+//                R.id.newExpense);
+//        saveBtn.setOnClickListener(new View.OnClickListener() {
+//
+////            @Override
+////            public void onClick(View v) {
+////                Toast.makeText(getActivity(), "button", Toast.LENGTH_SHORT).show();
+////                Intent intent = new Intent(getActivity(), NewExpense.class);
+////                    startActivity(intent);
+////
+////            }
+////        });
 
 
         adapter = new ArrayListAdaptor(getActivity(),
@@ -105,6 +102,17 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
         //mForecastAdapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textview,new ArrayList<String>());
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
+        listView.setEmptyView((TextView)rootView.findViewById(R.id.empty));
+//        TextView emptyTextView = (TextView) rootView.findViewById(R.id.empty);
+//        if(adapter.getCount() > 0 ) {
+//            emptyTextView.setVisibility(View.INVISIBLE);
+//            listView.setVisibility(View.VISIBLE);
+//        }
+//        else
+//        {
+//            emptyTextView.setVisibility(View.VISIBLE);
+//            listView.setVisibility(View.INVISIBLE);
+//        }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -140,6 +148,7 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     }
 
 
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 //        String locationSetting = Utility.getPreferredLocation(getActivity());
@@ -156,13 +165,46 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
 //        else {
 //            movieUri = MovieContract.MovieEntry.buildFavMovieUri();
 //        }
+        String[] monthData = {
+                // In this case the id needs to be fully qualified with a table name, since
+                // the content provider joins the location & weather tables in the background
+                // (both have an _id column)
+                // On the one hand, that's annoying.  On the other, you can search the weather table
+                // using the location set by the user, which is only in the Location table.
+                // So the convenience is worth it.
+                "strftime('%m', expense_date) as month",
+                "SUM(expense_amount)"
+        };
+        int i =0;
+        String[] sel = new String[]{"strftime('%m',date('now'))"};
+        // Finally, insert location data into the database.
+        Cursor selectedURI = getActivity().getContentResolver().query(ExpenseContract.ExpenseEntry.CONTENT_URI,
+                monthData,
+                "strftime('%m', expense_date) = strftime('%m',date('now')) group by month", null, null
+        );
+        while(selectedURI.moveToNext())
+        {
+            sumExpense=selectedURI.getString(1);
+        }
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        prefs.getString(getString(R.string.pref_metric_key),
+                getString(R.string.pref_default));
+        SharedPreferences.Editor editor = prefs.edit();
 
-        return new CursorLoader(getActivity(),
+        editor.putString(getString(R.string.pref_metric_key), sumExpense);
+        editor.commit();
+
+        TextView t= (TextView) getActivity().findViewById(R.id.textViewAll);
+        t.setText(getString(R.string.textAll) + " :" + sumExpense + "$");
+
+
+        CursorLoader expenseList = new CursorLoader(getActivity(),
                 movieUri,
                 FORECAST_COLUMNS,
                 null,
                 null,
                 null);
+        return expenseList;
     }
 
     @Override

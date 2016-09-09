@@ -27,5 +27,6 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
     compile 'com.android.support:appcompat-v7:24.0.0-beta1'
     compile 'com.android.support:design:22.2.0'
+    compile 'com.google.android.gms:play-services-drive:8.4.0'
 
 }

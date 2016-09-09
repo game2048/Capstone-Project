@@ -38,7 +38,7 @@ public class ExpenseWidget extends AppWidgetProvider {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     String value = prefs.getString("key",
                 String.valueOf(R.string.pref_default));
-        CharSequence widgetText = value;//context.getString(R.string.appwidget_text);
+        CharSequence widgetText = context.getString(R.string.appwidget_text) + value + "$";//;
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.expense_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);

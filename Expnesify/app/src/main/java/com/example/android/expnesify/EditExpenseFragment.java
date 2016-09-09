@@ -79,7 +79,7 @@ public class EditExpenseFragment extends Fragment {
 //        final TextView date = (TextView) root.findViewById(
 //                R.id.date);
         final TextView note = (TextView) root.findViewById(
-                R.id.noteText);
+                R.id.note1);
         final EditText fromDateEtxt = (EditText) root.findViewById(R.id.etxt_fromdate);
         final RadioGroup category = (RadioGroup) root.findViewById(
                 R.id.radioCateogry);
@@ -95,17 +95,30 @@ public class EditExpenseFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                a.add("Update");
-                a.add(in.getStringExtra("id"));
-                a.add(amount.getText().toString());
-                a.add(((RadioButton) root.findViewById(category.getCheckedRadioButtonId())).getText().toString());
-//                a.add(date.getText().toString());
-                a.add(fromDateEtxt.getText().toString());
-                a.add(note.getText().toString());
+                if (amount.getText().toString().trim().equals("")) {
 
-                DbTask expenseInsertTask = new DbTask(getActivity());
-                expenseInsertTask.execute(a.toArray(new String[a.size()]));
-                Toast.makeText(getActivity(), "save", Toast.LENGTH_SHORT).show();
+                    amount.setError("Amount is required!");
+                    Toast.makeText(getActivity(), "Enter Amount", Toast.LENGTH_SHORT).show();
+                } else if (fromDateEtxt.getText().toString().trim().equals("")) {
+                    fromDateEtxt.setError("Date is required!");
+                    Toast.makeText(getActivity(), "Enter Date", Toast.LENGTH_SHORT).show();
+                } else if (category.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getActivity(), "Select a expense category", Toast.LENGTH_SHORT).show();
+                } else {
+                    a.add("Update");
+                    a.add(in.getStringExtra("id"));
+                    a.add(amount.getText().toString());
+                    a.add(((RadioButton) root.findViewById(category.getCheckedRadioButtonId())).getText().toString());
+//                a.add(date.getText().toString());
+                    a.add(fromDateEtxt.getText().toString());
+                    a.add(note.getText().toString());
+
+                    DbTask expenseInsertTask = new DbTask(getActivity());
+                    expenseInsertTask.execute(a.toArray(new String[a.size()]));
+                    Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -118,7 +131,9 @@ public class EditExpenseFragment extends Fragment {
                 System.out.println("deleted !!");
                 DbTask expenseInsertTask = new DbTask(getActivity());
                 expenseInsertTask.execute(a.toArray(new String[a.size()]));
-                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "deleted", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -128,6 +143,8 @@ public class EditExpenseFragment extends Fragment {
 //                InsertDbTask movieUpdateTask = new InsertDbTask(getActivity());
                 System.out.println("Nothing saved !!");
                 Toast.makeText(getActivity(), "cancel", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
         });
         return root;

@@ -52,6 +52,10 @@
             android:name=".statistics"
             android:label="@string/title_activity_statistics" >
         </activity>
+        <activity
+            android:name=".exportData"
+            android:label="@string/title_activity_export_data" >
+        </activity>
     </application>
 
 </manifest>
