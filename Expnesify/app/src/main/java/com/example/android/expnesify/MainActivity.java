@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.action_history) {
-            return true;
-        }
+//
         if (id == R.id.action_statistics) {
             Intent intent1 = new Intent(this,statistics.class);
             this.startActivity(intent1);

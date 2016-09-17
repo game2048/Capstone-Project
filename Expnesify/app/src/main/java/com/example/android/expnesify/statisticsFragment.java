@@ -73,27 +73,53 @@ public class statisticsFragment extends Fragment {
                     FORECAST_COLUMNS,
                     "strftime('%m', expense_date) = strftime('%m',date('now')) group by expense_category", null, null
             );
-//            while (selectedURI.moveToNext()) {
-                ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-                BarEntry v1e1 = new BarEntry(Float.parseFloat("2.3"), i); // Jan
-                valueSet1.add(v1e1);
-
-                ArrayList<BarEntry> valueSet2 = new ArrayList<>();
-                BarEntry v2e1 = new BarEntry(Float.parseFloat("11"), i); // Jan
-                valueSet2.add(v2e1);
-                i++;
-
-                labels.add("test");
-                labels.add("hello");
-//            }
-            BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Brand 1");
+            ArrayList<BarEntry> valueSet1 = new ArrayList<>();
+            ArrayList<BarEntry> valueSet2 = new ArrayList<>();
+            ArrayList<BarEntry> valueSet3 = new ArrayList<>();
+            ArrayList<BarEntry> valueSet4 = new ArrayList<>();
+            ArrayList<BarEntry> valueSet5 = new ArrayList<>();
+            while (selectedURI.moveToNext()) {
+                if(selectedURI.getString(0).equals("Food and Drinks")) {
+                    BarEntry v1e1 = new BarEntry(Float.parseFloat(selectedURI.getString(1)), i);
+                    valueSet1.add(v1e1);
+                }
+                else if(selectedURI.getString(0).equals("Health")) {
+                    BarEntry v2e1 = new BarEntry(Float.parseFloat(selectedURI.getString(1)), i);
+                    valueSet2.add(v2e1);
+                }
+                else if(selectedURI.getString(0).equals("Transportation")) {
+                    BarEntry v2e1 = new BarEntry(Float.parseFloat(selectedURI.getString(1)), i);
+                    valueSet3.add(v2e1);
+                }
+                else if(selectedURI.getString(0).equals("Leisure")) {
+                    BarEntry v2e1 = new BarEntry(Float.parseFloat(selectedURI.getString(1)), i);
+                    valueSet4.add(v2e1);
+                }
+                else if(selectedURI.getString(0).equals("Others")) {
+                    BarEntry v2e1 = new BarEntry(Float.parseFloat(selectedURI.getString(1)), i);
+                    valueSet5.add(v2e1);
+                }
+            }
+            labels.add("Data");
+            BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Food and Drinks");
             barDataSet1.setColor(Color.rgb(0, 155, 0));
-            BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Brand 2");
-            barDataSet2.setColors(ColorTemplate.COLORFUL_COLORS);
+            BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Health");
+            barDataSet2.setColor(Color.rgb(193, 37, 82));
+            BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Transportation");
+            barDataSet3.setColor(Color.rgb(255, 102, 0));
+            BarDataSet barDataSet4 = new BarDataSet(valueSet4, "Leisure");
+            barDataSet4.setColor(Color.rgb(245, 199, 155));
+            BarDataSet barDataSet5 = new BarDataSet(valueSet5, "Others");
+            barDataSet5.setColor(Color.rgb(179, 155, 53));
+
+
 
             entries = new ArrayList<>();
             entries.add(barDataSet1);
             entries.add(barDataSet2);
+            entries.add(barDataSet3);
+            entries.add(barDataSet4);
+            entries.add(barDataSet5);
             return null;
         }
 
@@ -103,7 +129,7 @@ public class statisticsFragment extends Fragment {
             super.onPostExecute(s);
 
             BarData data = new BarData(labels,  entries);
-            lineChart.setDescription("Graph for Stock Values");
+            lineChart.setDescription("Graph for Monthly Spendings");
             lineChart.setData(data);
             lineChart.animateXY(animateSeconds, animateSeconds);
             lineChart.invalidate();

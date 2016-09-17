@@ -50,4 +50,6 @@
     <string name="noteDcr">Date Box for expense note</string>
 
     <string name="emptyData">No Expense Present for this month</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

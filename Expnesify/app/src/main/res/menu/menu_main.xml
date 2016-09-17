@@ -5,12 +5,9 @@
         <!--android:orderInCategory="100" app:showAsAction="never" />-->
     <item android:id="@+id/action_statistics" android:title="@string/action_statistics"
         android:orderInCategory="200" app:showAsAction="never" />
-    <item android:id="@+id/action_history" android:title="@string/action_history"
-        android:orderInCategory="300" app:showAsAction="never" />
     <item android:id="@+id/action_export" android:title="@string/action_export"
         android:orderInCategory="400" app:showAsAction="never" />
     <item android:id="@+id/newExpense" android:title="@string/newExpense"
         android:orderInCategory="400" app:showAsAction="always"
         />
-
 </menu>
