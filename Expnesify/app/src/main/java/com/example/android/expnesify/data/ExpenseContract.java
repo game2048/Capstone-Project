@@ -39,24 +39,8 @@ public class ExpenseContract {
     // the content provider.
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
-    // Possible paths (appended to base content URI for possible URI's)
-    // For instance, content://com.example.android.sunshine.app/weather/ is a valid path for
-    // looking at weather data. content://com.example.android.sunshine.app/givemeroot/ will fail,
-    // as the ContentProvider hasn't been given any information on what to do with "givemeroot".
-    // At least, let's hope not.  Don't be that dev, reader.  Don't be that dev.
     public static final String PATH_EXPENSE = "expense";
 
-    // To make it easy to query for the exact date, we normalize all dates that go into
-    // the database to the start of the the Julian day at UTC.
-//    public static long normalizeDate(long startDate) {
-//        // normalize the start date to the beginning of the (UTC) day
-//        Time time = new Time();
-//        time.set(startDate);
-//        int julianDay = Time.getJulianDay(startDate, time.gmtoff);
-//        return time.setJulianDay(julianDay);
-//    }
-
-    /* Inner class that defines the table contents of the location table */
     public static final class ExpenseEntry implements BaseColumns {
 
         public static final Uri CONTENT_URI =
@@ -70,12 +54,8 @@ public class ExpenseContract {
         // Table name
         public static final String TABLE_NAME = "expense";
 
-        // The location setting string is what will be sent to openweathermap
-        // as the location query.
         public static final String COLUMN_EXPENSE_ID = "_id";
 
-        // In order to uniquely pinpoint the location on the map when we launch the
-        // map intent, we store the latitude and longitude as returned by openweathermap.
         public static final String COLUMN_EXPENSE_DATE = "expense_date";
         public static final String COLUMN_EXPENSE_NOTE = "expense_note";
         public static final String COLUMN_EXPENSE_CATEGORY = "expense_category";
@@ -93,13 +73,6 @@ public class ExpenseContract {
 
         public static Uri buildExpenseUri() {
             return CONTENT_URI;
-        }
-
-
-        public static Uri buildOnIdExpenseUri(
-                ) {
-            return CONTENT_URI.buildUpon()
-                    .appendPath("ID").build();
         }
 
         public static String getExpenseIdFromUri(Uri uri) {

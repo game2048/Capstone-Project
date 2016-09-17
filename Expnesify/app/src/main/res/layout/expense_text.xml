@@ -24,7 +24,10 @@
         android:id="@+id/textView2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:padding="5dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="left|center_vertical|start"
+        />
+
         <TextView android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +35,9 @@
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:gravity="left|center_vertical|start"
+            />
         </LinearLayout>
         <TextView android:text="@string/hello_world"
             android:layout_width="match_parent"
@@ -40,6 +45,7 @@
             android:id="@+id/textView4"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:paddingLeft= "5dp"
+            android:gravity="left|center_vertical|start"
             />
 </LinearLayout>
     </FrameLayout>

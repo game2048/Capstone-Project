@@ -48,6 +48,14 @@
     <string name="otherDcr">Radio Box for other expense cateogry</string>
     <string name="dateDcr">Date Box for expense date</string>
     <string name="noteDcr">Date Box for expense note</string>
+    <string name="on">on</string>
+    <string name="dollar">$</string>
+
+    <string name="amountError">Amount is required!</string>
+    <string name="dateError">Date is required!</string>
+    <string name="catError">Select a expense category!</string>
+
+    <string name="graph">Graph for Monthly Spendings</string>
 
     <string name="emptyData">No Expense Present for this month</string>
 

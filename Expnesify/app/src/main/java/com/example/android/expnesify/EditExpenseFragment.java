@@ -1,6 +1,5 @@
 package com.example.android.expnesify;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -25,11 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.content.Intent.getIntent;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class EditExpenseFragment extends Fragment {
 
     public EditExpenseFragment() {
@@ -47,22 +42,6 @@ public class EditExpenseFragment extends Fragment {
         categoryMap.put("Leisure",2);
         categoryMap.put("Others",4);
 
-
-//        String id = getArguments().getString("id");
-//        String amt = getArguments().getString("amount");
-
-//        String expense = null;
-//
-//        TextView tv = (TextView) root.findViewById(R.id.amount);
-//        // Extract properties from cursor
-//        // Populate fields with extracted properties
-//
-//
-//        if(getArguments() != null) {
-//            expense = getArguments().getString("Movie");
-//        }
-//        tv.setText(expense.toString());
-
         final Button cancelBtn = (Button) root.findViewById(
                 R.id.cancel);
         final Button saveBtn = (Button) root.findViewById(
@@ -71,13 +50,8 @@ public class EditExpenseFragment extends Fragment {
         final Button deleteBtn = (Button) root.findViewById(
                 R.id.delete
         );
-//            ContentValues values = new ContentValues();
-//            values.put(MovieContract.MovieEntry.COLUMN_MOVIE_FAV,"True");
-//            int insertedUri = mContext.getContentResolver().update(MovieContract.MovieEntry.buildMovieUri(),values,MovieContract.MovieEntry.COLUMN_MOVIE_ID + "?",new String[] {String.valueOf(movieId)});
-        final TextView amount = (TextView) root.findViewById(
+    final TextView amount = (TextView) root.findViewById(
                 R.id.amountText);
-//        final TextView date = (TextView) root.findViewById(
-//                R.id.date);
         final TextView note = (TextView) root.findViewById(
                 R.id.note1);
         final EditText fromDateEtxt = (EditText) root.findViewById(R.id.etxt_fromdate);
@@ -160,21 +134,16 @@ public class EditExpenseFragment extends Fragment {
         protected Void doInBackground(String... params) {
             ContentValues locationValues = new ContentValues();
             if(params[0].equals("Update")) {
-                // Then add the data, along with the corresponding name of the data type,
-                // so the content provider knows what kind of value is being inserted.
                 locationValues.put(ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_AMOUNT, params[2]);
                 locationValues.put(ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_CATEGORY, params[3]);
                 locationValues.put(ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_DATE, params[4]);
                 locationValues.put(ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_NOTE, params[5]);
 
-                // Finally, insert location data into the database.
                 int insertedUri = mContext.getContentResolver().update(
                         ExpenseContract.ExpenseEntry.CONTENT_URI,
                         locationValues, ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_ID+ "=?", new String[]{params[1]}
                 );
 
-                // The resulting URI contains the ID for the row.  Extract the locationId from the Uri.
-//            long expenseId = ContentUris.parseId(insertedUri);
                 System.out.println("Expense Saved !!" + insertedUri);
             }
             else

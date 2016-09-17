@@ -101,18 +101,16 @@ public class statisticsFragment extends Fragment {
                 }
             }
             labels.add("Data");
-            BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Food and Drinks");
+            BarDataSet barDataSet1 = new BarDataSet(valueSet1, getString(R.string.foodDrinks));
             barDataSet1.setColor(Color.rgb(0, 155, 0));
-            BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Health");
+            BarDataSet barDataSet2 = new BarDataSet(valueSet2, getString(R.string.health));
             barDataSet2.setColor(Color.rgb(193, 37, 82));
-            BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Transportation");
+            BarDataSet barDataSet3 = new BarDataSet(valueSet3, getString(R.string.transportation));
             barDataSet3.setColor(Color.rgb(255, 102, 0));
-            BarDataSet barDataSet4 = new BarDataSet(valueSet4, "Leisure");
+            BarDataSet barDataSet4 = new BarDataSet(valueSet4, getString(R.string.leisure));
             barDataSet4.setColor(Color.rgb(245, 199, 155));
-            BarDataSet barDataSet5 = new BarDataSet(valueSet5, "Others");
+            BarDataSet barDataSet5 = new BarDataSet(valueSet5, getString(R.string.others));
             barDataSet5.setColor(Color.rgb(179, 155, 53));
-
-
 
             entries = new ArrayList<>();
             entries.add(barDataSet1);
@@ -129,7 +127,7 @@ public class statisticsFragment extends Fragment {
             super.onPostExecute(s);
 
             BarData data = new BarData(labels,  entries);
-            lineChart.setDescription("Graph for Monthly Spendings");
+            lineChart.setDescription(getString(R.string.graph));
             lineChart.setData(data);
             lineChart.animateXY(animateSeconds, animateSeconds);
             lineChart.invalidate();

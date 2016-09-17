@@ -64,15 +64,15 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View v) {
                 if( amount.getText().toString().trim().equals("")){
 
-                    amount.setError("Amount is required!");
-                    Toast.makeText(getActivity(), "Enter Amount", Toast.LENGTH_SHORT).show();
+                    amount.setError(getString(R.string.amountError));
+                    Toast.makeText(getActivity(), getString(R.string.amountError), Toast.LENGTH_SHORT).show();
                 }
                 else if(fromDateEtxt.getText().toString().trim().equals("")) {
-                    fromDateEtxt.setError("Date is required!");
-                    Toast.makeText(getActivity(), "Enter Date", Toast.LENGTH_SHORT).show();
+                    fromDateEtxt.setError(getString(R.string.dateError));
+                    Toast.makeText(getActivity(), getString(R.string.dateError), Toast.LENGTH_SHORT).show();
                 }
                 else if(category.getCheckedRadioButtonId() == -1) {
-                    Toast.makeText(getActivity(), "Select a expense category", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.catError), Toast.LENGTH_SHORT).show();
                 }
                 else {
 

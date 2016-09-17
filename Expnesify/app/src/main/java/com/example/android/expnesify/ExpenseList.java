@@ -52,13 +52,7 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     SharedPreferences prefs ;
     String sumExpense = "0";
     public static final String MyPREFERENCES = "MyPrefs" ;
-    private static final String[] FORECAST_COLUMNS = {
-            // In this case the id needs to be fully qualified with a table name, since
-            // the content provider joins the location & weather tables in the background
-            // (both have an _id column)
-            // On the one hand, that's annoying.  On the other, you can search the weather table
-            // using the location set by the user, which is only in the Location table.
-            // So the convenience is worth it.
+    private static final String[] EXPENSE_COLUMNS = {
             ExpenseContract.ExpenseEntry.TABLE_NAME + "." + ExpenseContract.ExpenseEntry._ID,
             ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_AMOUNT,
             ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_CATEGORY,
@@ -69,11 +63,8 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Add this line in order for this fragment to handle menu events.
+
         setHasOptionsMenu(true);
-
-
-//        return new R.layout.list_item_forecast;
 
     }
 
@@ -81,26 +72,8 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_expense_list, container, false);
-//        View emptyView = inflater.inflate(R.layout.empty_list, container, false);
-
-
-//        final Button saveBtn = (Button) rootView.findViewById(
-//                R.id.newExpense);
-//        saveBtn.setOnClickListener(new View.OnClickListener() {
-//
-////            @Override
-////            public void onClick(View v) {
-////                Toast.makeText(getActivity(), "button", Toast.LENGTH_SHORT).show();
-////                Intent intent = new Intent(getActivity(), NewExpense.class);
-////                    startActivity(intent);
-////
-////            }
-////        });
 
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
@@ -113,16 +86,7 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
         listView.setEmptyView((TextView)rootView.findViewById(R.id.empty));
-//        TextView emptyTextView = (TextView) rootView.findViewById(R.id.empty);
-//        if(adapter.getCount() > 0 ) {
-//            emptyTextView.setVisibility(View.INVISIBLE);
-//            listView.setVisibility(View.VISIBLE);
-//        }
-//        else
-//        {
-//            emptyTextView.setVisibility(View.VISIBLE);
-//            listView.setVisibility(View.INVISIBLE);
-//        }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -154,34 +118,15 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public void onStart() {
         super.onStart();
-//        updateWeather();
     }
-
-
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//        String locationSetting = Utility.getPreferredLocation(getActivity());
-
-        // Sort order:  Ascending, by date.
-//        String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
-        Uri movieUri =  null;
+        Uri expenseUri =  null;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        String units = prefs.getString(getString(R.string.pref_metric_key),
-//                getString(R.string.pref_location_default));
-//        if(units.equalsIgnoreCase("most popular")|| units.equalsIgnoreCase("highest-rated")) {
-            movieUri = ExpenseContract.ExpenseEntry.buildExpenseUri();
-//        }
-//        else {
-//            movieUri = MovieContract.MovieEntry.buildFavMovieUri();
-//        }
+            expenseUri = ExpenseContract.ExpenseEntry.buildExpenseUri();
+
         String[] monthData = {
-                // In this case the id needs to be fully qualified with a table name, since
-                // the content provider joins the location & weather tables in the background
-                // (both have an _id column)
-                // On the one hand, that's annoying.  On the other, you can search the weather table
-                // using the location set by the user, which is only in the Location table.
-                // So the convenience is worth it.
                 "strftime('%m', expense_date) as month",
                 "SUM(expense_amount)"
         };
@@ -209,8 +154,8 @@ public class ExpenseList extends Fragment implements LoaderManager.LoaderCallbac
 
 
         CursorLoader expenseList = new CursorLoader(getActivity(),
-                movieUri,
-                FORECAST_COLUMNS,
+                expenseUri,
+                EXPENSE_COLUMNS,
                 null,
                 null,
                 null);

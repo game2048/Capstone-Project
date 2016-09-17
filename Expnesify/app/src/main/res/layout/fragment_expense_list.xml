@@ -79,7 +79,6 @@
         android:paddingEnd="16dp"
         />
 
-
 </LinearLayout>
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"

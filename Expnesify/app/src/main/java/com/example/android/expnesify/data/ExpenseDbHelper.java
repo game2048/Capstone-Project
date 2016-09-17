@@ -26,7 +26,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.android.expnesify.data.ExpenseContract.ExpenseEntry;
 
 /**
- * Manages a local database for weather data.
+ * Manages a local database for expense data.
  */
 public class ExpenseDbHelper extends SQLiteOpenHelper {
 
@@ -41,8 +41,6 @@ public class ExpenseDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        // Create a table to hold locations.  A location consists of the string supplied in the
-        // location setting, the city name, and the latitude and longitude
 
         final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + ExpenseEntry.TABLE_NAME + " (" +
                 ExpenseEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +

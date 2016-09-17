@@ -49,14 +49,9 @@ public class ExpenseProvider extends ContentProvider {
                 ExpenseContract.ExpenseEntry.TABLE_NAME );
     }
 
-    //location.location_setting = ?
     private static final String sExpenseIdSelection =
             ExpenseContract.ExpenseEntry.TABLE_NAME+
                     "." + ExpenseContract.ExpenseEntry._ID + " = ? ";
-
-//    private static final String sFavSelection =
-//            ExpenseContract.ExpenseEntry.TABLE_NAME+
-//                    "." + ExpenseContract.ExpenseEntry.COLUMN_EXPENSE_FAV + " = ? ";
 
 
     private Cursor getWeatherByExpenseId(Uri uri, String[] projection, String sortOrder) {
@@ -78,38 +73,7 @@ public class ExpenseProvider extends ContentProvider {
         );
     }
 
-//    private Cursor getfavExpenses(Uri uri, String[] projection, String sortOrder) {
-//        String movieId = ExpenseContract.ExpenseEntry.getExpenseIdFromUri(uri);
-//
-//        String[] selectionArgs;
-//        String selection;
-//
-//        selectionArgs = new String[]{"true"};
-////        selection = sFavSelection;
-//
-//        return sExpenseByIdQueryBuilder.query(mOpenHelper.getReadableDatabase(),
-//                projection,
-//                selection,
-//                selectionArgs,
-//                null,
-//                null,
-//                sortOrder
-//        );
-//    }
-
-    /*
-        Students: Here is where you need to create the UriMatcher. This UriMatcher will
-        match each URI to the WEATHER, WEATHER_WITH_LOCATION, WEATHER_WITH_LOCATION_AND_DATE,
-        and LOCATION integer constants defined above.  You can test this by uncommenting the
-        testUriMatcher test within TestUriMatcher.
-     */
     static UriMatcher buildUriMatcher() {
-        // I know what you're thinking.  Why create a UriMatcher when you can use regular
-        // expressions instead?  Because you're not crazy, that's why.
-
-        // All paths added to the UriMatcher have a corresponding code to return when a match is
-        // found.  The code passed into the constructor represents the code to return for the root
-        // URI.  It's common to use NO_MATCH as the code for this case.
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = ExpenseContract.CONTENT_AUTHORITY;
 
@@ -120,29 +84,18 @@ public class ExpenseProvider extends ContentProvider {
         return matcher;
     }
 
-    /*
-        Students: We've coded this for you.  We just create a new WeatherDbHelper for later use
-        here.
-     */
     @Override
     public boolean onCreate() {
         mOpenHelper = new ExpenseDbHelper(getContext());
         return true;
     }
 
-    /*
-        Students: Here's where you'll code the getType function that uses the UriMatcher.  You can
-        test this by uncommenting testGetType in TestProvider.
-
-     */
     @Override
     public String getType(Uri uri) {
 
-        // Use the Uri Matcher to determine what kind of URI this is.
         final int match = sUriMatcher.match(uri);
 
         switch (match) {
-            // Student: Uncomment and fill out these two cases
             case EXPENSE:
                 return ExpenseContract.ExpenseEntry.CONTENT_ITEM_TYPE;
             case EXPENSE_WITH_ID:
@@ -161,14 +114,12 @@ public class ExpenseProvider extends ContentProvider {
         // and query the database accordingly.
         Cursor retCursor;
         switch (sUriMatcher.match(uri)) {
-            // "movie/*"
             case EXPENSE_WITH_ID:
             {
                 retCursor = getWeatherByExpenseId(uri, projection, sortOrder);
                 break;
             }
 
-            // "weather"
             case EXPENSE: {
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         ExpenseContract.ExpenseEntry.TABLE_NAME,
@@ -181,10 +132,6 @@ public class ExpenseProvider extends ContentProvider {
                 );
                 break;
             }
-//            case EXPENSE_FAV: {
-//                retCursor = getfavExpenses(uri, projection, sortOrder);
-//                break;
-//            }
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -193,9 +140,6 @@ public class ExpenseProvider extends ContentProvider {
         return retCursor;
     }
 
-    /*
-        Student: Add the ability to insert Locations to the implementation of this function.
-     */
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
@@ -223,7 +167,6 @@ public class ExpenseProvider extends ContentProvider {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
         int rowsDeleted;
-        // this makes delete all rows return the number of rows deleted
         if ( null == selection ) selection = "1";
         switch (match) {
             case EXPENSE:
@@ -233,7 +176,6 @@ public class ExpenseProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
-        // Because a null deletes all rows
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
@@ -287,9 +229,6 @@ public class ExpenseProvider extends ContentProvider {
         }
     }
 
-    // You do not need to call this method. This is a method specifically to assist the testing
-    // framework in running smoothly. You can read more at:
-    // http://developer.android.com/reference/android/content/ContentProvider.html#shutdown()
     @Override
     @TargetApi(11)
     public void shutdown() {
