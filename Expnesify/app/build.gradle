@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'expensify'
             keyPassword 'expensify@123'
-            storeFile file('/Users/vaibhav.seth/AndroidStudioProjects/keyStore.jks')
+            storeFile file('keystore/keyStore.jks')
             storePassword 'expensify@123'
         }
     }
