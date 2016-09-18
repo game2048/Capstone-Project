@@ -22,10 +22,8 @@ import java.util.Locale;
 
 public class NewExpense extends AppCompatActivity implements View.OnClickListener {
     private EditText fromDateEtxt;
-    private EditText toDateEtxt;
 
     private DatePickerDialog fromDatePickerDialog;
-    private DatePickerDialog toDatePickerDialog;
 
     private SimpleDateFormat dateFormatter;
         @Override
@@ -37,28 +35,11 @@ public class NewExpense extends AppCompatActivity implements View.OnClickListene
             findViewsById();
 
             setDateTimeField();
-//            Intent intent = getIntent();
-//
-//            if (getIntent() != null) {
-//                Intent movieIntent = getIntent();
-//                String movie = movieIntent.getDataString();
-//                Bundle args = new Bundle();
-//                args.putString("Movie", movie);
-//                MainActivityFragment detailFragment = new MainActivityFragment();
-//                detailFragment.setArguments(args);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.container, detailFragment).commit();
-//            }
+
         }
 
-        //    private ShareActionProvider mShareActionProvider;
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.detail, menu);
-//        MenuItem item = menu.findItem(R.id.menu_item_share);
-//
-//        // Fetch and store ShareActionProvider
-//        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
 
             return true;
         }

@@ -7,6 +7,6 @@
         android:layout_centerVertical="true" android:text="@string/appwidget_text"
         android:textColor="#ffffff" android:textSize="24sp" android:textStyle="bold|italic"
         android:layout_margin="8dp" android:contentDescription="@string/appwidget_text"
-        android:background="#09C" />
+        android:background="#09C" android:gravity="start|end" />
 
 </RelativeLayout>

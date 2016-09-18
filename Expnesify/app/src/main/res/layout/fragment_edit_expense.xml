@@ -1,169 +1,152 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.example.android.expnesify.NewExpense">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.expnesify.NewExpense">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/cancelDcr"
+                    android:text="@string/cancel" />
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/deleteDcr"
+                    android:text="@string/delete" />
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/saveDcr"
+                    android:text="@string/save" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cancel"
-                android:id="@+id/cancel"
-                android:layout_weight="1"
-                android:contentDescription="@string/cancelDcr"
-                />
+                android:layout_gravity="left|top"
+                android:text="@string/amount"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Button
-                android:layout_width="0dp"
+            <EditText
+                android:id="@+id/amountText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/delete"
-                android:id="@+id/delete"
-                android:layout_weight="1"
-                android:contentDescription="@string/deleteDcr"
-                />
+                android:contentDescription="@string/amountDcr"
+                android:ems="10"
+                android:inputType="number" />
 
-            <Button
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/save"
-                android:id="@+id/save"
-                android:layout_weight="1"
-                android:contentDescription="@string/saveDcr"
-                />
-            <!--<TextView android:layout_weight="1" android:layout_height="match_parent"-->
-            <!--android:text="@string/cancel" />-->
+                android:layout_gravity="left|top"
+                android:text="@string/category"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <!--<TextView android:layout_weight="1" android:layout_height="match_parent"-->
-            <!--android:text="@string/save" />-->
+            <RadioGroup
+                android:id="@+id/radioCateogry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/foodDcr"
+                    android:text="@string/foodDrinks" />
+
+                <RadioButton
+                    android:id="@+id/health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/healthDcr"
+                    android:text="@string/health" />
+
+                <RadioButton
+                    android:id="@+id/leisure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/leisureDcr"
+                    android:text="@string/leisure" />
+
+                <RadioButton
+                    android:id="@+id/transportation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/transDcr"
+                    android:text="@string/transportation" />
+
+                <RadioButton
+                    android:id="@+id/others"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/otherDcr"
+                    android:text="@string/others" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/additionalInfo"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dateText"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/etxt_fromdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/dateDcr"
+                android:hint="@string/from_date" />
+
+
+            <TextView
+                android:id="@+id/noteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/noteText"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/note1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/noteDcr" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/amount"
-            android:id="@+id/amount"
-            android:layout_gravity="left|top" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/amountText"
-            android:contentDescription="@string/amountDcr"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/category"
-            android:id="@+id/category"
-            android:layout_gravity="left|top" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioCateogry">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/foodDrinks"
-                android:id="@+id/food"
-                android:contentDescription="@string/foodDcr"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/health"
-                android:id="@+id/health"
-                android:contentDescription="@string/healthDcr"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/leisure"
-                android:id="@+id/leisure"
-                android:contentDescription="@string/leisureDcr"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/transportation"
-                android:id="@+id/transportation"
-                android:contentDescription="@string/transDcr"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/others"
-                android:id="@+id/others"
-                android:contentDescription="@string/otherDcr"
-                />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/additionalInfo"
-            android:id="@+id/textView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/dateText"
-            android:id="@+id/dateText" />
-
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="date"-->
-            <!--android:ems="10"-->
-            <!--android:id="@+id/date" />-->
-
-        <EditText
-            android:id="@+id/etxt_fromdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/from_date"
-            android:contentDescription="@string/dateDcr"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/noteText"
-            android:id="@+id/noteText" />
-
-        <EditText
-            android:id="@+id/note1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/noteDcr"
-            />
-
-
-    </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

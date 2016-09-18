@@ -24,23 +24,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/cancel"
                     android:contentDescription="@string/cancelDcr"
-                    />
+                    android:text="@string/cancel" />
 
                 <Button
                     android:id="@+id/save"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/save"
                     android:contentDescription="@string/saveDcr"
-                    />
-                <!--<TextView android:layout_weight="1" android:layout_height="match_parent"-->
-                <!--android:text="@string/cancel" />-->
-
-                <!--<TextView android:layout_weight="1" android:layout_height="match_parent"-->
-                <!--android:text="@string/save" />-->
+                    android:text="@string/save" />
 
             </LinearLayout>
 
@@ -56,10 +49,9 @@
                 android:id="@+id/amountText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
                 android:contentDescription="@string/amountDcr"
-                />
+                android:ems="10"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/category"
@@ -78,41 +70,36 @@
                     android:id="@+id/food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/foodDrinks"
                     android:contentDescription="@string/foodDcr"
-                    />
+                    android:text="@string/foodDrinks" />
 
                 <RadioButton
                     android:id="@+id/health"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/health"
                     android:contentDescription="@string/healthDcr"
-                    />
+                    android:text="@string/health" />
 
                 <RadioButton
                     android:id="@+id/leisure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/leisure"
                     android:contentDescription="@string/leisureDcr"
-                    />
+                    android:text="@string/leisure" />
 
                 <RadioButton
                     android:id="@+id/transportation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/transportation"
                     android:contentDescription="@string/transDcr"
-                    />
+                    android:text="@string/transportation" />
 
                 <RadioButton
                     android:id="@+id/others"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/others"
                     android:contentDescription="@string/otherDcr"
-                    />
+                    android:text="@string/others" />
 
             </RadioGroup>
 
@@ -134,9 +121,8 @@
                 android:id="@+id/etxt_fromdate1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/from_date"
                 android:contentDescription="@string/dateDcr"
-                />
+                android:hint="@string/from_date" />
 
             <TextView
                 android:id="@+id/noteText"
@@ -149,8 +135,7 @@
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/noteDcr"
-                />
+                android:contentDescription="@string/noteDcr" />
 
         </LinearLayout>
     </ScrollView>
